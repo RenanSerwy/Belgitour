@@ -989,9 +989,12 @@
             if (data.interesses) data.interesses = data.interesses.join(', ');
             if (data.locomocao) data.locomocao = data.locomocao.join(', ');
 
+            // AQUI ESTÁ A ALTERAÇÃO: Definindo a URL do Apps Script diretamente
+            const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbyrIgrWIaeju_kKAqHbuMQgZkmFZa_Bt9ARKueF8hAsMXSYtCqa3dRDCEc9ssXwYC0uDw/exec';
+            // A linha original 'const appsScriptUrl = localStorage.getItem('appsScriptUrl');' foi substituída.
+            // Se você quiser voltar a usar o localStorage, pode reverter esta alteração.
 
-            const appsScriptUrl = localStorage.getItem('appsScriptUrl');
-            if (!appsScriptUrl) {
+            if (!appsScriptUrl) { // Esta verificação agora é redundante se a URL estiver fixa, mas mantida por segurança.
                 formErrorMessage.textContent = '⚠️ URL do Apps Script não configurada no painel administrativo.';
                 formErrorMessage.style.display = 'block';
                 return;
@@ -1075,7 +1078,9 @@
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const password = adminPasswordInput.value;
-            const appsScriptUrl = localStorage.getItem('appsScriptUrl');
+            // AQUI TAMBÉM: Usando a URL fixa para o painel administrativo
+            const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbyrIgrWIaeju_kKAqHbuMQgZkmFZa_Bt9ARKueF8hAsMXSYtCqa3dRDCEc9ssXwYC0uDw/exec';
+            // A linha original 'const appsScriptUrl = localStorage.getItem('appsScriptUrl');' foi substituída.
 
             if (!appsScriptUrl) {
                 loginError.textContent = 'URL do Apps Script não configurada.';
@@ -1117,7 +1122,9 @@
         async function loadClients() {
             clientList.innerHTML = '<p style="text-align: center;">Carregando clientes...</p>';
             const password = localStorage.getItem('adminPassword');
-            const appsScriptUrl = localStorage.getItem('appsScriptUrl');
+            // AQUI TAMBÉM: Usando a URL fixa para carregar clientes
+            const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbyrIgrWIaeju_kKAqHbuMQgZkmFZa_Bt9ARKueF8hAsMXSYtCqa3dRDCEc9ssXwYC0uDw/exec';
+            // A linha original 'const appsScriptUrl = localStorage.getItem('appsScriptUrl');' foi substituída.
 
             if (!password || !appsScriptUrl) {
                 alert('Erro: Senha ou URL do Apps Script não configurada.');
@@ -1225,7 +1232,9 @@
         saveRoteiroButton.addEventListener('click', async () => {
             if (!currentClientIdx) return;
             const password = localStorage.getItem('adminPassword');
-            const appsScriptUrl = localStorage.getItem('appsScriptUrl');
+            // AQUI TAMBÉM: Usando a URL fixa para salvar roteiro
+            const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbyrIgrWIaeju_kKAqHbuMQgZkmFZa_Bt9ARKueF8hAsMXSYtCqa3dRDCEc9ssXwYC0uDw/exec';
+            // A linha original 'const appsScriptUrl = localStorage.getItem('appsScriptUrl');' foi substituída.
 
             const data = {
                 action: 'salvarRoteiro',
@@ -1259,7 +1268,9 @@
         approveRoteiroButton.addEventListener('click', async () => {
             if (!currentClientIdx) return;
             const password = localStorage.getItem('adminPassword');
-            const appsScriptUrl = localStorage.getItem('appsScriptUrl');
+            // AQUI TAMBÉM: Usando a URL fixa para aprovar roteiro
+            const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbyrIgrWIaeju_kKAqHbuMQgZkmFZa_Bt9ARKueF8hAsMXSYtCqa3dRDCEc9ssXwYC0uDw/exec';
+            // A linha original 'const appsScriptUrl = localStorage.getItem('appsScriptUrl');' foi substituída.
 
             const data = {
                 action: 'aprovarRoteiro',
@@ -1292,7 +1303,9 @@
 
         async function generateRoteiro(idx) {
             const password = localStorage.getItem('adminPassword');
-            const appsScriptUrl = localStorage.getItem('appsScriptUrl');
+            // AQUI TAMBÉM: Usando a URL fixa para gerar roteiro
+            const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbyrIgrWIaeju_kKAqHbuMQgZkmFZa_Bt9ARKueF8hAsMXSYtCqa3dRDCEc9ssXwYC0uDw/exec';
+            // A linha original 'const appsScriptUrl = localStorage.getItem('appsScriptUrl');' foi substituída.
 
             const cliente = Array.from(clientList.children).find(li => li.querySelector('.view-edit-roteiro-button').dataset.idx === idx)._clienteData; // Acessa os dados do cliente
             if (!cliente) {
@@ -1350,7 +1363,9 @@
         loadClients = async function() {
             clientList.innerHTML = '<p style="text-align: center;">Carregando clientes...</p>';
             const password = localStorage.getItem('adminPassword');
-            const appsScriptUrl = localStorage.getItem('appsScriptUrl');
+            // AQUI TAMBÉM: Usando a URL fixa para carregar clientes (no override)
+            const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbyrIgrWIaeju_kKAqHbuMQgZkmFZa_Bt9ARKueF8hAsMXSYtCqa3dRDCEc9ssXwYC0uDw/exec';
+            // A linha original 'const appsScriptUrl = localStorage.getItem('appsScriptUrl');' foi substituída.
 
             if (!password || !appsScriptUrl) {
                 alert('Erro: Senha ou URL do Apps Script não configurada.');
@@ -1428,7 +1443,10 @@
             }
             roteiroAccessError.style.display = 'none';
 
-            const appsScriptUrl = localStorage.getItem('appsScriptUrl');
+            // AQUI TAMBÉM: Usando a URL fixa para buscar roteiro pelo cliente
+            const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbyrIgrWIaeju_kKAqHbuMQgZkmFZa_Bt9ARKueF8hAsMXSYtCqa3dRDCEc9ssXwYC0uDw/exec';
+            // A linha original 'const appsScriptUrl = localStorage.getItem('appsScriptUrl');' foi substituída.
+
             if (!appsScriptUrl) {
                 roteiroAccessError.textContent = '⚠️ URL do Apps Script não configurada. Contate a Belgitour.';
                 roteiroAccessError.style.display = 'block';
